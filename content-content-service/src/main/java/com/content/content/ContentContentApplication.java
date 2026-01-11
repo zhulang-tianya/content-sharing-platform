@@ -8,7 +8,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 /**
  * 内容分享平台内容服务应用
  */
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "com.content")
 @EnableDiscoveryClient
 @MapperScan("com.content.content.mapper")
 public class ContentContentApplication {

@@ -27,6 +27,19 @@ public class Result<T> implements Serializable {
      * 响应数据
      */
     private T data;
+    
+    // 手动添加 set 方法，确保能被正确调用
+    public void setCode(Integer code) {
+        this.code = code;
+    }
+    
+    public void setMessage(String message) {
+        this.message = message;
+    }
+    
+    public void setData(T data) {
+        this.data = data;
+    }
 
     /**
      * 成功响应

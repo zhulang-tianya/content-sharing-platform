@@ -2,6 +2,7 @@ package com.content.user.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.content.common.result.Result;
+import com.content.framework.security.annotation.PreAuthorizePermi;
 import com.content.user.entity.User;
 import com.content.user.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -29,6 +30,7 @@ public class UserController {
      */
     @GetMapping
     @Operation(summary = "获取用户列表", description = "获取所有用户信息")
+    @PreAuthorizePermi(hasPermi = "user:list")
     public Result<List<User>> getUserList() {
         List<User> userList = userService.list();
         return Result.success(userList);
@@ -43,6 +45,7 @@ public class UserController {
      */
     @GetMapping("/page")
     @Operation(summary = "分页获取用户列表", description = "分页获取用户信息")
+    @PreAuthorizePermi(hasPermi = "user:list")
     public Result<Page<User>> getUserPage(@RequestParam(defaultValue = "1") Integer page, 
                                           @RequestParam(defaultValue = "10") Integer size) {
         Page<User> userPage = userService.page(new Page<>(page, size));
@@ -57,6 +60,7 @@ public class UserController {
      */
     @GetMapping("/{id}")
     @Operation(summary = "根据ID获取用户信息", description = "根据用户ID获取用户详情")
+    @PreAuthorizePermi(hasPermi = "user:view")
     public Result<User> getUserById(@PathVariable Long id) {
         User user = userService.getById(id);
         return Result.success(user);
@@ -70,6 +74,7 @@ public class UserController {
      */
     @PostMapping
     @Operation(summary = "创建用户", description = "创建新用户")
+    @PreAuthorizePermi(hasPermi = "user:add")
     public Result<Boolean> createUser(@RequestBody User user) {
         boolean result = userService.save(user);
         return Result.success(result);
@@ -84,6 +89,7 @@ public class UserController {
      */
     @PutMapping("/{id}")
     @Operation(summary = "更新用户", description = "根据用户ID更新用户信息")
+    @PreAuthorizePermi(hasPermi = "user:edit")
     public Result<Boolean> updateUser(@PathVariable Long id, @RequestBody User user) {
         user.setId(id);
         boolean result = userService.updateById(user);
@@ -98,6 +104,7 @@ public class UserController {
      */
     @DeleteMapping("/{id}")
     @Operation(summary = "删除用户", description = "根据用户ID删除用户")
+    @PreAuthorizePermi(hasPermi = "user:delete")
     public Result<Boolean> deleteUser(@PathVariable Long id) {
         boolean result = userService.removeById(id);
         return Result.success(result);
@@ -111,6 +118,7 @@ public class UserController {
      */
     @GetMapping("/username/{username}")
     @Operation(summary = "根据用户名获取用户信息", description = "根据用户名查询用户详情")
+    @PreAuthorizePermi(hasPermi = "user:view")
     public Result<User> getUserByUsername(@PathVariable String username) {
         User user = userService.getByUsername(username);
         return Result.success(user);

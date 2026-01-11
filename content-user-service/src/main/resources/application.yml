@@ -32,6 +32,7 @@ spring:
       registry:
         address: nacos://@nacos.server-addr@
 
+
 mybatis-plus:
   type-aliases-package: com.content.user.entity
 

@@ -2,6 +2,7 @@ package com.content.content.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.content.common.result.Result;
+import com.content.framework.security.annotation.PreAuthorizePermi;
 import com.content.content.entity.Content;
 import com.content.content.service.ContentService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -111,6 +112,7 @@ public class ContentController {
      */
     @PostMapping
     @Operation(summary = "创建内容", description = "创建新内容")
+    @PreAuthorizePermi(hasPermi = "content:add")
     public Result<Boolean> createContent(@RequestBody Content content) {
         boolean result = contentService.save(content);
         return Result.success(result);
@@ -125,6 +127,7 @@ public class ContentController {
      */
     @PutMapping("/{id}")
     @Operation(summary = "更新内容", description = "根据内容ID更新内容信息")
+    @PreAuthorizePermi(hasPermi = "content:edit")
     public Result<Boolean> updateContent(@PathVariable Long id, @RequestBody Content content) {
         content.setId(id);
         boolean result = contentService.updateById(content);
@@ -139,6 +142,7 @@ public class ContentController {
      */
     @DeleteMapping("/{id}")
     @Operation(summary = "删除内容", description = "根据内容ID删除内容")
+    @PreAuthorizePermi(hasPermi = "content:delete")
     public Result<Boolean> deleteContent(@PathVariable Long id) {
         boolean result = contentService.removeById(id);
         return Result.success(result);

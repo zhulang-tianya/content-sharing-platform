@@ -24,13 +24,14 @@
 ## 开发环境配置内容 (common-dev.yml)
 
 ```yaml
-# MySQL 数据源配置
+# Spring配置
 spring:
+  # 数据源配置
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://192.168.86.1:3306/content_sharing?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://192.168.1.103:3306/ruoyi-flex?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
     username: root
-    password: root
+    password: mysql654321
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
       initial-size: 5
@@ -48,12 +49,12 @@ spring:
       filters: stat,wall,log4j2
       connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
 
-  # Redis 配置
+  # Redis配置
   data:
     redis:
-      host: 192.168.86.1
+      host: 192.168.1.103
       port: 6379
-      password:
+      password: redis654321
       database: 0
       timeout: 5000
       lettuce:
@@ -63,9 +64,9 @@ spring:
           min-idle: 5
           max-wait: 2000
 
-  # RabbitMQ 配置
+  # RabbitMQ配置
   rabbitmq:
-    host: 192.168.86.1
+    host: localhost
     port: 5672
     username: guest
     password: guest
@@ -78,7 +79,7 @@ spring:
       direct:
         acknowledge-mode: manual
 
-# MyBatis Plus 配置
+# MyBatis Plus配置
 mybatis-plus:
   mapper-locations: classpath*:/mapper/**/*.xml
   configuration:
@@ -87,6 +88,30 @@ mybatis-plus:
   global-config:
     db-config:
       id-type: auto
+
+# JWT配置
+jwt:
+  # 密钥
+  secret: content_sharing_platform_jwt_secret_key_2026
+  # 过期时间（秒）
+  expiration: 7200
+  # 刷新时间（秒）
+  refreshTime: 14400
+  # 令牌前缀
+  tokenPrefix: Bearer
+  # 令牌头
+  tokenHeader: Authorization
+
+# 日志配置
+logging:
+  level:
+    root: info
+    com.content: debug
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+  file:
+    name: logs/${spring.application.name}.log
 ```
 
 ---
@@ -94,13 +119,14 @@ mybatis-plus:
 ## 测试环境配置内容 (common-test.yml)
 
 ```yaml
-# MySQL 数据源配置
+# Spring配置
 spring:
+  # 数据源配置
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://test-mysql:3306/content_sharing?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://192.168.1.103:3306/ruoyi-flex?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
     username: root
-    password: test_password
+    password: mysql654321
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
       initial-size: 5
@@ -118,12 +144,12 @@ spring:
       filters: stat,wall,log4j2
       connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
 
-  # Redis 配置
+  # Redis配置
   data:
     redis:
-      host: test-redis
+      host: 192.168.1.103
       port: 6379
-      password: test_redis_password
+      password: redis654321
       database: 0
       timeout: 5000
       lettuce:
@@ -133,13 +159,13 @@ spring:
           min-idle: 5
           max-wait: 2000
 
-  # RabbitMQ 配置
+  # RabbitMQ配置
   rabbitmq:
-    host: test-rabbitmq
+    host: localhost
     port: 5672
-    username: test_user
-    password: test_password
-    virtual-host: /test
+    username: guest
+    password: guest
+    virtual-host: /
     listener:
       simple:
         acknowledge-mode: manual
@@ -148,7 +174,7 @@ spring:
       direct:
         acknowledge-mode: manual
 
-# MyBatis Plus 配置
+# MyBatis Plus配置
 mybatis-plus:
   mapper-locations: classpath*:/mapper/**/*.xml
   configuration:
@@ -157,6 +183,30 @@ mybatis-plus:
   global-config:
     db-config:
       id-type: auto
+
+# JWT配置
+jwt:
+  # 密钥
+  secret: content_sharing_platform_jwt_secret_key_2026_test
+  # 过期时间（秒）
+  expiration: 7200
+  # 刷新时间（秒）
+  refreshTime: 14400
+  # 令牌前缀
+  tokenPrefix: Bearer
+  # 令牌头
+  tokenHeader: Authorization
+
+# 日志配置
+logging:
+  level:
+    root: info
+    com.content: debug
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+  file:
+    name: logs/${spring.application.name}.log
 ```
 
 ---
@@ -164,13 +214,14 @@ mybatis-plus:
 ## 生产环境配置内容 (common-prod.yml)
 
 ```yaml
-# MySQL 数据源配置
+# Spring配置
 spring:
+  # 数据源配置
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://prod-mysql:3306/content_sharing?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=Asia/Shanghai
-    username: prod_user
-    password: prod_secure_password
+    url: jdbc:mysql://192.168.1.103:3306/ruoyi-flex?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=Asia/Shanghai
+    username: root
+    password: mysql654321
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
       initial-size: 10
@@ -188,12 +239,12 @@ spring:
       filters: stat,wall,log4j2
       connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
 
-  # Redis 配置
+  # Redis配置
   data:
     redis:
-      host: prod-redis
+      host: 192.168.1.103
       port: 6379
-      password: prod_redis_secure_password
+      password: redis654321
       database: 0
       timeout: 5000
       lettuce:
@@ -203,13 +254,13 @@ spring:
           min-idle: 10
           max-wait: 2000
 
-  # RabbitMQ 配置
+  # RabbitMQ配置
   rabbitmq:
-    host: prod-rabbitmq
+    host: localhost
     port: 5672
-    username: prod_user
-    password: prod_secure_password
-    virtual-host: /prod
+    username: guest
+    password: guest
+    virtual-host: /
     listener:
       simple:
         acknowledge-mode: manual
@@ -218,7 +269,7 @@ spring:
       direct:
         acknowledge-mode: manual
 
-# MyBatis Plus 配置
+# MyBatis Plus配置
 mybatis-plus:
   mapper-locations: classpath*:/mapper/**/*.xml
   configuration:
@@ -227,6 +278,30 @@ mybatis-plus:
   global-config:
     db-config:
       id-type: auto
+
+# JWT配置
+jwt:
+  # 密钥
+  secret: content_sharing_platform_jwt_secret_key_2026_prod
+  # 过期时间（秒）
+  expiration: 7200
+  # 刷新时间（秒）
+  refreshTime: 14400
+  # 令牌前缀
+  tokenPrefix: Bearer
+  # 令牌头
+  tokenHeader: Authorization
+
+# 日志配置
+logging:
+  level:
+    root: info
+    com.content: debug
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+  file:
+    name: logs/${spring.application.name}.log
 ```
 
 ---
