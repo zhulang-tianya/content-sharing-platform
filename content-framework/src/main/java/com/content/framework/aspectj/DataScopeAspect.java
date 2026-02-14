@@ -3,7 +3,7 @@ package com.content.framework.aspectj;
 import com.content.framework.annotation.DataScope;
 import com.content.framework.security.LoginUser;
 import com.content.framework.security.SecurityUtils;
-import com.content.user.entity.Role;
+import com.content.framework.security.entity.Role;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;

@@ -6,9 +6,14 @@ import lombok.Data;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+/**
+ * 角色实体类
+ */
 @Data
 @TableName("sys_role")
 public class Role implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private Long id;
     
@@ -18,11 +23,17 @@ public class Role implements Serializable {
     
     private String description;
     
+    private Long parentId;
+    
     private Integer sort;
     
-    private Boolean status;
+    private Integer status;
     
-    private Boolean deleted;
+    private Integer deleted;
+
+    private String dataScope;
+    
+    private Long tenantId;
     
     private LocalDateTime createTime;
     
@@ -31,6 +42,4 @@ public class Role implements Serializable {
     private String createBy;
     
     private String updateBy;
-    
-    private static final long serialVersionUID = 1L;
 }

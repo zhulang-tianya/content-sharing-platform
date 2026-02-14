@@ -2,8 +2,8 @@ package com.content.user.security.service;
 
 import com.content.common.exception.BusinessException;
 import com.content.framework.security.LoginUser;
+import com.content.framework.security.entity.Role;
 import com.content.user.entity.Permission;
-import com.content.user.entity.Role;
 import com.content.user.entity.User;
 import com.content.user.mapper.PermissionMapper;
 import com.content.user.mapper.RoleMapper;
@@ -24,9 +24,6 @@ import java.util.stream.Collectors;
 
 /**
  * 用户详情服务实现
- * <p>
- * 加载用户信息、角色和权限
- * </p>
  */
 @Slf4j
 @Service
@@ -61,9 +58,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         return loginUser;
     }
 
-    /**
-     * 构建登录用户信息
-     */
     private LoginUser buildLoginUser(User user) {
         LoginUser loginUser = new LoginUser();
         loginUser.setUserId(user.getId());
@@ -80,13 +74,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         return loginUser;
     }
 
-    /**
-     * 加载用户角色和权限
-     */
     private void loadUserRolesAndPermissions(LoginUser loginUser) {
         Long userId = loginUser.getUserId();
 
-        // 超级管理员拥有所有权限
         if (loginUser.isAdmin()) {
             Set<String> allPermissions = permissionMapper.selectAllEnabled()
                 .stream()
@@ -98,7 +88,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             return;
         }
 
-        // 加载角色
         List<Role> roles = roleMapper.selectRolesByUserId(userId);
         Set<Role> roleSet = new HashSet<>(roles);
         Set<String> roleCodes = roles.stream()
@@ -108,33 +97,25 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         loginUser.setRoles(roleSet);
         loginUser.setRoleCodes(roleCodes);
 
-        // 加载权限
         List<Permission> permissions = permissionMapper.selectPermissionsByUserId(userId);
         Set<String> permissionCodes = permissions.stream()
             .map(Permission::getCode)
             .collect(Collectors.toSet());
 
         loginUser.setPermissions(permissionCodes);
-
-        // 构建权限列表
         loginUser.setAuthorities(buildAuthorities(roleCodes, permissionCodes));
 
         log.debug("用户 {} 加载角色: {}, 权限: {}", 
             loginUser.getUsername(), roleCodes, permissionCodes.size());
     }
 
-    /**
-     * 构建权限列表
-     */
     private Set<GrantedAuthority> buildAuthorities(Set<String> roleCodes, Set<String> permissions) {
         Set<GrantedAuthority> authorities = new HashSet<>();
         
-        // 添加角色（以ROLE_前缀标识）
         for (String roleCode : roleCodes) {
             authorities.add(new SimpleGrantedAuthority("ROLE_" + roleCode));
         }
         
-        // 添加权限
         for (String permission : permissions) {
             authorities.add(new SimpleGrantedAuthority(permission));
         }
