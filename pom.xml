@@ -35,6 +35,7 @@
         <module>content-search-service</module>
         <module>content-stat-service</module>
         <module>content-queue-service</module>
+        <module>content-notification-service</module>
     </modules>
 
     <!-- 依赖管理 - 导入内部依赖管理模块 -->
