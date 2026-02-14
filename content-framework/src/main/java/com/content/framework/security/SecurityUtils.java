@@ -33,6 +33,14 @@ public class SecurityUtils {
         return null;
     }
 
+    public static LoginUser getLoginUser() {
+        Authentication authentication = getAuthentication();
+        if (authentication != null && authentication.getPrincipal() instanceof LoginUser) {
+            return (LoginUser) authentication.getPrincipal();
+        }
+        return null;
+    }
+
     public static boolean isAdmin(Long userId) {
         return userId != null && 1L == userId;
     }

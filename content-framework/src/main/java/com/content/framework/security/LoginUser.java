@@ -199,4 +199,20 @@ public class LoginUser implements UserDetails {
         }
         return permissions != null && permissions.contains(permission);
     }
+
+    /**
+     * 构造函数
+     */
+    public LoginUser() {
+    }
+
+    /**
+     * 简化构造函数
+     */
+    public LoginUser(Long userId, String username, String password, Collection<GrantedAuthority> authorities) {
+        this.userId = userId;
+        this.username = username;
+        this.password = password;
+        this.authorities = authorities;
+    }
 }
