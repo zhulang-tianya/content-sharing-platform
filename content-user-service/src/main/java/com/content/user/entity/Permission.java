@@ -8,68 +8,68 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
- * 用户实体类
+ * 权限实体类
  */
 @Data
-@TableName("sys_user")
-public class User implements Serializable {
+@TableName("sys_permission")
+public class Permission implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 用户ID
+     * 权限ID
      */
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
     /**
-     * 用户名
+     * 权限名称
      */
-    private String username;
+    private String name;
 
     /**
-     * 密码
+     * 权限编码
      */
-    private String password;
+    private String code;
 
     /**
-     * 昵称
+     * 请求路径
      */
-    private String nickname;
+    private String path;
 
     /**
-     * 邮箱
+     * 请求方法
      */
-    private String email;
+    private String method;
 
     /**
-     * 手机号
+     * 权限描述
      */
-    private String phone;
+    private String description;
 
     /**
-     * 头像
+     * 父权限ID
      */
-    private String avatar;
+    private Long parentId;
 
     /**
-     * 部门ID
+     * 排序
      */
-    private Long deptId;
+    private Integer sort;
 
     /**
-     * 用户类型：0-普通用户，1-管理员
+     * 权限类型：2-按钮，3-接口
      */
     private Integer type;
 
     /**
-     * 状态：0-禁用，1-启用
+     * 状态：1-启用，0-禁用
      */
     private Integer status;
 
     /**
-     * 删除标志：1-已删除，0-正常
+     * 租户ID
      */
-    private Integer deleted;
+    private Long tenantId;
 
     /**
      * 创建时间
@@ -90,9 +90,4 @@ public class User implements Serializable {
      * 更新人
      */
     private String updateBy;
-
-    /**
-     * 租户ID
-     */
-    private Long tenantId;
 }

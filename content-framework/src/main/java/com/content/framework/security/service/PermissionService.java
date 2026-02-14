@@ -2,6 +2,11 @@ package com.content.framework.security.service;
 
 import com.content.common.constant.SecurityConstants;
 import com.content.framework.security.SecurityUtils;
+import com.content.framework.security.entity.Permission;
+import com.content.framework.security.entity.Role;
+import com.content.framework.security.mapper.PermissionMapper;
+import com.content.framework.security.mapper.RoleMapper;
+import com.content.framework.security.mapper.UserRoleMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
@@ -9,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 import java.util.concurrent.TimeUnit;
 
 @Service
@@ -16,6 +22,15 @@ public class PermissionService {
 
     @Autowired
     private RedisTemplate<String, Object> redisTemplate;
+    
+    @Autowired
+    private UserRoleMapper userRoleMapper;
+    
+    @Autowired
+    private RoleMapper roleMapper;
+    
+    @Autowired
+    private PermissionMapper permissionMapper;
 
     public boolean hasPermi(String permission) {
         if (SecurityUtils.isEmpty(permission)) {
@@ -134,25 +149,19 @@ public class PermissionService {
     }
 
     private Set<String> loadPermissionsFromDatabase(Long userId) {
-        // 模拟从数据库加载权限列表
-        Set<String> permissions = new HashSet<>();
-        permissions.add("user:list");
-        permissions.add("user:view");
-        permissions.add("article:list");
-        permissions.add("article:view");
-        permissions.add("comment:list");
-        permissions.add("comment:view");
-        return permissions;
+        // 从数据库加载用户权限列表
+        List<Permission> permissionList = permissionMapper.selectPermissionsByUserId(userId);
+        return permissionList.stream()
+                .map(Permission::getCode)
+                .collect(Collectors.toSet());
     }
 
     private Set<String> loadRolesFromDatabase(Long userId) {
-        // 模拟从数据库加载角色列表
-        Set<String> roles = new HashSet<>();
-        roles.add("ROLE_USER");
-        if (userId != null && userId == 1L) {
-            roles.add("ROLE_ADMIN");
-        }
-        return roles;
+        // 从数据库加载用户角色列表
+        List<Role> roleList = roleMapper.selectRolesByUserId(userId);
+        return roleList.stream()
+                .map(Role::getCode)
+                .collect(Collectors.toSet());
     }
 
     public void clearCache(Long userId) {

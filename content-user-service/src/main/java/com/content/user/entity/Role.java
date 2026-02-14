@@ -8,68 +8,63 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
- * 用户实体类
+ * 角色实体类
  */
 @Data
-@TableName("sys_user")
-public class User implements Serializable {
+@TableName("sys_role")
+public class Role implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 用户ID
+     * 角色ID
      */
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
     /**
-     * 用户名
+     * 角色名称
      */
-    private String username;
+    private String name;
 
     /**
-     * 密码
+     * 角色编码
      */
-    private String password;
+    private String code;
 
     /**
-     * 昵称
+     * 角色描述
      */
-    private String nickname;
+    private String description;
 
     /**
-     * 邮箱
+     * 父角色ID
      */
-    private String email;
+    private Long parentId;
 
     /**
-     * 手机号
+     * 排序
      */
-    private String phone;
+    private Integer sort;
 
     /**
-     * 头像
-     */
-    private String avatar;
-
-    /**
-     * 部门ID
-     */
-    private Long deptId;
-
-    /**
-     * 用户类型：0-普通用户，1-管理员
-     */
-    private Integer type;
-
-    /**
-     * 状态：0-禁用，1-启用
+     * 状态：1-启用，0-禁用
      */
     private Integer status;
+
+    /**
+     * 数据范围（1：全部数据权限 2：自定义数据权限 3：本部门数据权限 4：本部门及以下数据权限 5：仅本人数据权限）
+     */
+    private String dataScope;
 
     /**
      * 删除标志：1-已删除，0-正常
      */
     private Integer deleted;
+
+    /**
+     * 租户ID
+     */
+    private Long tenantId;
 
     /**
      * 创建时间
@@ -90,9 +85,4 @@ public class User implements Serializable {
      * 更新人
      */
     private String updateBy;
-
-    /**
-     * 租户ID
-     */
-    private Long tenantId;
 }

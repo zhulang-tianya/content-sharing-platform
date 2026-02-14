@@ -115,3 +115,13 @@ pnpm-debug.log*
 *.jks
 secrets/
 credentials/
+
+# Trae IDE
+.trae/
+
+# Development Standards (local skill)
+content-sharing-dev-standards/
+content-sharing-dev-standards.skill
+
+# Code Generator (local skill)
+content-codegen-skill/

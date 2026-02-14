@@ -29,16 +29,22 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private static final String BEARER_PREFIX = "Bearer ";
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+    protected void doFilterInternal(HttpServletRequest request, 
+                                    HttpServletResponse response, 
+                                    FilterChain filterChain)
             throws ServletException, IOException {
         String token = extractToken(request);
-        if (token != null && jwtUtils.getUsernameFromToken(token) != null && SecurityContextHolder.getContext().getAuthentication() == null && userDetailsService != null) {
-            String username = jwtUtils.getUsernameFromToken(token);
+        String username = token != null ? jwtUtils.getUsernameFromToken(token) : null;
+        boolean noAuth = SecurityContextHolder.getContext().getAuthentication() == null;
+        
+        if (token != null && username != null && noAuth && userDetailsService != null) {
             UserDetails userDetails = userDetailsService.loadUserByUsername(username);
             if (jwtUtils.validateToken(token, username)) {
-                UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
+                UsernamePasswordAuthenticationToken authentication = 
+                    new UsernamePasswordAuthenticationToken(
                         userDetails, null, userDetails.getAuthorities());
-                authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                authentication.setDetails(
+                    new WebAuthenticationDetailsSource().buildDetails(request));
                 SecurityContextHolder.getContext().setAuthentication(authentication);
             }
         }

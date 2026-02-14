@@ -1,11 +1,14 @@
 package com.content.common.utils;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 
+@Slf4j
 public class FileUtils {
 
     public static byte[] readFileToBytes(String filePath) {
@@ -26,7 +29,7 @@ public class FileUtils {
             }
             return bos.toByteArray();
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error("读取文件失败，filePath={}", file.getAbsolutePath(), e);
             return null;
         }
     }
@@ -53,7 +56,7 @@ public class FileUtils {
         try (FileOutputStream fos = new FileOutputStream(file)) {
             fos.write(bytes);
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error("写入文件失败，filePath={}", file.getAbsolutePath(), e);
         }
     }
 
@@ -412,7 +415,7 @@ public class FileUtils {
         try {
             return file.toURI().toURL().toString();
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("获取文件URL失败，filePath={}", file.getAbsolutePath(), e);
             return null;
         }
     }
@@ -433,7 +436,7 @@ public class FileUtils {
             }
             return true;
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("下载文件失败，url={}", url, e);
             return false;
         }
     }
@@ -444,7 +447,7 @@ public class FileUtils {
             String path = uri.getPath();
             return path.substring(path.lastIndexOf('/') + 1);
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("从URL获取文件名失败，url={}", url, e);
             return null;
         }
     }

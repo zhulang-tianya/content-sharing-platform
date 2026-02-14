@@ -284,4 +284,14 @@ public interface SecurityConstants {
      * 用户角色缓存键
      */
     String USER_ROLE_CACHE_KEY = "user:role:";
+
+    /**
+     * Token过期时间（秒），默认2小时
+     */
+    long TOKEN_EXPIRE_TIME = 7200L;
+
+    /**
+     * 刷新Token过期时间（秒），默认7天
+     */
+    long REFRESH_TOKEN_EXPIRE_TIME = 604800L;
 }

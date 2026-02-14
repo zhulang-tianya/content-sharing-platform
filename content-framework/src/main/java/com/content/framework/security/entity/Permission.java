@@ -1,11 +1,13 @@
 package com.content.framework.security.entity;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Data
+@TableName("sys_permission")
 public class Permission implements Serializable {
 
     private Long id;

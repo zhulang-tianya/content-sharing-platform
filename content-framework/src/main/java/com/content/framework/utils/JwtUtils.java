@@ -115,6 +115,16 @@ public class JwtUtils {
     }
 
     /**
+     * 获取令牌过期时间戳（秒）
+     * @param token JWT令牌
+     * @return 过期时间戳（秒）
+     */
+    public long getExpireTime(String token) {
+        Date expiration = getExpirationDateFromToken(token);
+        return expiration.getTime() / 1000;
+    }
+
+    /**
      * 检查令牌是否过期
      * @param token JWT令牌
      * @return 是否过期

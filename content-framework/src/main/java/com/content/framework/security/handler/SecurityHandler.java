@@ -18,10 +18,15 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 @Component
-public class SecurityHandler implements AuthenticationSuccessHandler, AuthenticationFailureHandler, AccessDeniedHandler {
+public class SecurityHandler implements AuthenticationSuccessHandler, 
+                                         AuthenticationFailureHandler, 
+                                         AccessDeniedHandler {
 
     @Override
-    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, org.springframework.security.core.Authentication authentication) throws IOException {
+    public void onAuthenticationSuccess(HttpServletRequest request, 
+                                         HttpServletResponse response, 
+                                         org.springframework.security.core.Authentication authentication) 
+            throws IOException {
         response.setContentType("application/json;charset=utf-8");
         PrintWriter out = response.getWriter();
         out.write(JsonUtils.toJson(Result.success("登录成功")));
@@ -30,7 +35,10 @@ public class SecurityHandler implements AuthenticationSuccessHandler, Authentica
     }
 
     @Override
-    public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException {
+    public void onAuthenticationFailure(HttpServletRequest request, 
+                                         HttpServletResponse response, 
+                                         AuthenticationException exception) 
+            throws IOException {
         response.setContentType("application/json;charset=utf-8");
         PrintWriter out = response.getWriter();
         String message = "登录失败";
@@ -39,16 +47,21 @@ public class SecurityHandler implements AuthenticationSuccessHandler, Authentica
         } else if (exception instanceof InsufficientAuthenticationException) {
             message = "认证信息不足";
         }
-        out.write(JsonUtils.toJson(Result.fail(ResultCode.UNAUTHORIZED.getCode(), message)));
+        out.write(JsonUtils.toJson(
+            Result.fail(ResultCode.UNAUTHORIZED.getCode(), message)));
         out.flush();
         out.close();
     }
 
     @Override
-    public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessDeniedException) throws IOException {
+    public void handle(HttpServletRequest request, 
+                       HttpServletResponse response, 
+                       AccessDeniedException accessDeniedException) 
+            throws IOException {
         response.setContentType("application/json;charset=utf-8");
         PrintWriter out = response.getWriter();
-        out.write(JsonUtils.toJson(Result.fail(ResultCode.FORBIDDEN.getCode(), "没有权限访问")));
+        out.write(JsonUtils.toJson(
+            Result.fail(ResultCode.FORBIDDEN.getCode(), "没有权限访问")));
         out.flush();
         out.close();
     }

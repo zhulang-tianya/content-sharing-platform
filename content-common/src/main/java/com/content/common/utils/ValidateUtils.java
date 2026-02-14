@@ -13,15 +13,19 @@ public class ValidateUtils {
 
     private static final Pattern PHONE_PATTERN = Pattern.compile("^\\d{3,4}-?\\d{7,8}$");
 
-    private static final Pattern ID_CARD_PATTERN = Pattern.compile("^[1-9]\\d{5}(18|19|20)\\d{2}(0[1-9]|1[0-2])(0[1-9]|[12]\\d|3[01])\\d{3}[\\dXx]$");
+    private static final Pattern ID_CARD_PATTERN = Pattern.compile(
+        "^[1-9]\\d{5}(18|19|20)\\d{2}(0[1-9]|1[0-2])(0[1-9]|[12]\\d|3[01])\\d{3}[\\dXx]$");
 
     private static final Pattern USERNAME_PATTERN = Pattern.compile("^[a-zA-Z0-9_]{4,20}$");
 
-    private static final Pattern PASSWORD_PATTERN = Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,20}$");
+    private static final Pattern PASSWORD_PATTERN = Pattern.compile(
+        "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,20}$");
 
-    private static final Pattern URL_PATTERN = Pattern.compile("^(https?|ftp)://[^\\s/$.?#].[^\\s]*$");
+    private static final Pattern URL_PATTERN = Pattern.compile(
+        "^(https?|ftp)://[^\\s/$.?#].[^\\s]*$");
 
-    private static final Pattern IP_PATTERN = Pattern.compile("^((25[0-5]|2[0-4]\\d|[01]?\\d\\d?)\\.){3}(25[0-5]|2[0-4]\\d|[01]?\\d\\d?)$");
+    private static final Pattern IP_PATTERN = Pattern.compile(
+        "^((25[0-5]|2[0-4]\\d|[01]?\\d\\d?)\\.){3}(25[0-5]|2[0-4]\\d|[01]?\\d\\d?)$");
 
     private static final Pattern NUMBER_PATTERN = Pattern.compile("^-?\\d+$");
 
@@ -45,7 +49,9 @@ public class ValidateUtils {
 
     private static final Pattern BANK_CARD_PATTERN = Pattern.compile("^\\d{16,19}$");
 
-    private static final Pattern CAR_LICENSE_PATTERN = Pattern.compile("^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z]{1}[A-Z0-9]{4}[A-Z0-9挂学警港澳]{1}$");
+    private static final Pattern CAR_LICENSE_PATTERN = Pattern.compile(
+        "^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}" +
+        "[A-Z]{1}[A-Z0-9]{4}[A-Z0-9挂学警港澳]{1}$");
 
     private static final Pattern QQ_PATTERN = Pattern.compile("^[1-9]\\d{4,10}$");
 
@@ -53,11 +59,14 @@ public class ValidateUtils {
 
     private static final Pattern WEIBO_PATTERN = Pattern.compile("^[a-zA-Z0-9_-]{4,20}$");
 
-    private static final Pattern ALIPAY_PATTERN = Pattern.compile("^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)+$|^1[3-9]\\d{9}$");
+    private static final Pattern ALIPAY_PATTERN = Pattern.compile(
+        "^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)+$|^1[3-9]\\d{9}$");
 
-    private static final Pattern TEL_PATTERN = Pattern.compile("^1[3-9]\\d{9}$|^\\d{3,4}-?\\d{7,8}$");
+    private static final Pattern TEL_PATTERN = Pattern.compile(
+        "^1[3-9]\\d{9}$|^\\d{3,4}-?\\d{7,8}$");
 
-    private static final Pattern PASSWORD_STRENGTH_PATTERN = Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$");
+    private static final Pattern PASSWORD_STRENGTH_PATTERN = Pattern.compile(
+        "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$");
 
     private static final Pattern CHINESE_NAME_PATTERN = Pattern.compile("^[\\u4e00-\\u9fa5]{2,8}$");
 
@@ -69,7 +78,8 @@ public class ValidateUtils {
 
     private static final Pattern HEIGHT_PATTERN = Pattern.compile("^[1-2]\\d{2}(\\.\\d{1,2})?$");
 
-    private static final Pattern WEIGHT_PATTERN = Pattern.compile("^[3-9]\\d(\\.\\d{1,2})?$|^1[0-9]{2}(\\.\\d{1,2})?$|^2[0-9]{2}(\\.\\d{1,2})?$");
+    private static final Pattern WEIGHT_PATTERN = Pattern.compile(
+        "^[3-9]\\d(\\.\\d{1,2})?$|^1[0-9]{2}(\\.\\d{1,2})?$|^2[0-9]{2}(\\.\\d{1,2})?$");
 
     public static boolean isEmail(String email) {
         if (StringUtils.isEmpty(email)) {
