@@ -1,6 +1,7 @@
 package com.content.framework.security.service;
 
 import com.content.common.result.Result;
+import com.content.entity.Permission;
 import com.content.entity.Role;
 import com.content.entity.UserRole;
 
@@ -12,7 +13,7 @@ public interface RoleService {
 
     Result<Role> getById(Long id);
 
-    Result<List<com.content.framework.security.entity.Permission>> getRolePermissions(Long roleId);
+    Result<List<Permission>> getRolePermissions(Long roleId);
 
     Result<Void> assignPermissions(Long roleId, List<Long> permissionIds);
 
