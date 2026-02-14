@@ -1,7 +1,7 @@
 package com.content.user.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.content.framework.security.entity.Role;
+import com.content.entity.Role;
 import com.content.user.query.RoleQuery;
 
 import java.util.List;

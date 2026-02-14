@@ -1,6 +1,6 @@
 package com.content.user.service;
 
-import com.content.user.entity.Dept;
+import com.content.entity.Dept;
 
 import java.util.List;
 

@@ -2,9 +2,9 @@ package com.content.user.security.service;
 
 import com.content.common.exception.BusinessException;
 import com.content.framework.security.LoginUser;
-import com.content.framework.security.entity.Role;
-import com.content.user.entity.Permission;
-import com.content.user.entity.User;
+import com.content.entity.Role;
+import com.content.entity.Permission;
+import com.content.entity.User;
 import com.content.user.mapper.PermissionMapper;
 import com.content.user.mapper.RoleMapper;
 import com.content.user.mapper.UserMapper;

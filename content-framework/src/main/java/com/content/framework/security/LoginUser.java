@@ -1,6 +1,6 @@
 package com.content.framework.security;
 
-import com.content.framework.security.entity.Role;
+import com.content.entity.Role;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;

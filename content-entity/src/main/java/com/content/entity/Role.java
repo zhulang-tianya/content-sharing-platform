@@ -1,5 +1,7 @@
-package com.content.framework.security.entity;
+package com.content.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
@@ -15,31 +17,32 @@ public class Role implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @TableId(value = "id", type = IdType.AUTO)
     private Long id;
-    
+
     private String name;
-    
+
     private String code;
-    
+
     private String description;
-    
+
     private Long parentId;
-    
+
     private Integer sort;
-    
+
     private Integer status;
-    
+
     private Integer deleted;
 
     private String dataScope;
-    
+
     private Long tenantId;
-    
+
     private LocalDateTime createTime;
-    
+
     private LocalDateTime updateTime;
-    
+
     private String createBy;
-    
+
     private String updateBy;
 }

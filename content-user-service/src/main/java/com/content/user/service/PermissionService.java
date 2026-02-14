@@ -1,7 +1,7 @@
 package com.content.user.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.content.user.entity.Permission;
+import com.content.entity.Permission;
 import com.content.user.query.PermissionQuery;
 
 import java.util.List;

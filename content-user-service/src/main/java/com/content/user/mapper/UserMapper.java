@@ -1,7 +1,7 @@
 package com.content.user.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.content.user.entity.User;
+import com.content.entity.User;
 
 /**
  * 用户Mapper接口

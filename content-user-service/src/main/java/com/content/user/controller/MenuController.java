@@ -4,7 +4,7 @@ import com.content.common.result.Result;
 import com.content.framework.security.LoginUser;
 import com.content.framework.security.SecurityUtils;
 import com.content.framework.security.annotation.PreAuthorizePermi;
-import com.content.user.entity.Menu;
+import com.content.entity.Menu;
 import com.content.user.service.MenuService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;

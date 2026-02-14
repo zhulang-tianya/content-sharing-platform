@@ -1,7 +1,7 @@
 package com.content.user.service.impl;
 
 import com.content.common.exception.BusinessException;
-import com.content.user.entity.Menu;
+import com.content.entity.Menu;
 import com.content.user.mapper.MenuMapper;
 import com.content.user.service.MenuService;
 import lombok.RequiredArgsConstructor;

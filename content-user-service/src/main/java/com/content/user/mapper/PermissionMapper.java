@@ -1,7 +1,7 @@
 package com.content.user.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.content.user.entity.Permission;
+import com.content.entity.Permission;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;

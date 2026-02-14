@@ -2,7 +2,7 @@ package com.content.user.controller;
 
 import com.content.common.result.Result;
 import com.content.framework.security.annotation.PreAuthorizePermi;
-import com.content.user.entity.Dept;
+import com.content.entity.Dept;
 import com.content.user.service.DeptService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;

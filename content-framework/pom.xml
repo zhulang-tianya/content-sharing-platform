@@ -18,8 +18,11 @@
     <dependencies>
         <dependency>
             <groupId>com.content</groupId>
+            <artifactId>content-entity</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.content</groupId>
             <artifactId>content-common</artifactId>
-            <version>${project.version}</version>
         </dependency>
 
         <dependency>

@@ -1,6 +1,6 @@
 package com.content.user.service;
 
-import com.content.user.entity.Menu;
+import com.content.entity.Menu;
 
 import java.util.List;
 

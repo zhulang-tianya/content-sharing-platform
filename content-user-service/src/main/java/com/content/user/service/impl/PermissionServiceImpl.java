@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.content.common.exception.BusinessException;
 import com.content.common.utils.StringUtils;
-import com.content.user.entity.Permission;
+import com.content.entity.Permission;
 import com.content.user.mapper.PermissionMapper;
 import com.content.user.query.PermissionQuery;
 import com.content.user.service.PermissionService;

@@ -1,7 +1,7 @@
 package com.content.user.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.content.user.entity.User;
+import com.content.entity.User;
 
 /**
  * 用户服务接口

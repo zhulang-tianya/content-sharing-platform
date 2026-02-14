@@ -3,7 +3,7 @@ package com.content.user.controller;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.content.common.result.Result;
 import com.content.framework.security.annotation.PreAuthorizePermi;
-import com.content.user.entity.Permission;
+import com.content.entity.Permission;
 import com.content.user.query.PermissionQuery;
 import com.content.user.service.PermissionService;
 import io.swagger.v3.oas.annotations.Operation;

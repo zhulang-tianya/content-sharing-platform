@@ -23,6 +23,7 @@
     <!-- 模块管理 -->
     <modules>
         <module>content-dependency-management</module>
+        <module>content-entity</module>
         <module>content-common</module>
         <module>content-framework</module>
         <module>content-gateway</module>

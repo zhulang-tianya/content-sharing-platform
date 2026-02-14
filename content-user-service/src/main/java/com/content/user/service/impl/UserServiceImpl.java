@@ -2,7 +2,7 @@ package com.content.user.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.content.user.entity.User;
+import com.content.entity.User;
 import com.content.user.mapper.UserMapper;
 import com.content.user.service.UserService;
 import lombok.extern.slf4j.Slf4j;
