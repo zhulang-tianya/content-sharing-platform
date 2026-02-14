@@ -11,10 +11,10 @@ import org.springframework.stereotype.Component;
 public class SecurityService {
 
     @Autowired
-    private PermissionService permissionService;
+    private SecurityPermissionService securityPermissionService;
 
     public boolean hasPermi(String permission) {
-        boolean hasPermission = permissionService.hasPermi(permission);
+        boolean hasPermission = securityPermissionService.hasPermi(permission);
         if (!hasPermission) {
             throw new ForbiddenException("Permission denied");
         }
@@ -22,7 +22,7 @@ public class SecurityService {
     }
 
     public boolean hasRole(String role) {
-        boolean hasRole = permissionService.hasRole(role);
+        boolean hasRole = securityPermissionService.hasRole(role);
         if (!hasRole) {
             throw new ForbiddenException("Permission denied");
         }
@@ -30,7 +30,7 @@ public class SecurityService {
     }
 
     public boolean hasAnyPermi(String... permissions) {
-        boolean hasAnyPermission = permissionService.hasAnyPermi(permissions);
+        boolean hasAnyPermission = securityPermissionService.hasAnyPermi(permissions);
         if (!hasAnyPermission) {
             throw new ForbiddenException("Permission denied");
         }
@@ -38,7 +38,7 @@ public class SecurityService {
     }
 
     public boolean hasAnyRole(String... roles) {
-        boolean hasAnyRole = permissionService.hasAnyRole(roles);
+        boolean hasAnyRole = securityPermissionService.hasAnyRole(roles);
         if (!hasAnyRole) {
             throw new ForbiddenException("Permission denied");
         }

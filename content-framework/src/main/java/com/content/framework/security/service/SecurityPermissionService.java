@@ -17,8 +17,11 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.concurrent.TimeUnit;
 
-@Service
-public class PermissionService {
+/**
+ * 权限校验服务（用于安全框架内部权限校验）
+ */
+@Service("securityPermissionService")
+public class SecurityPermissionService {
 
     @Autowired
     private RedisTemplate<String, Object> redisTemplate;
