@@ -1,7 +1,7 @@
 package com.content.framework.security.controller;
 
 import com.content.common.result.Result;
-import com.content.framework.security.entity.Permission;
+import com.content.entity.Permission;
 import com.content.framework.security.service.PermissionService;
 import com.content.framework.security.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;

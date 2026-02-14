@@ -2,8 +2,8 @@ package com.content.framework.security.service;
 
 import com.content.common.constant.SecurityConstants;
 import com.content.framework.security.SecurityUtils;
-import com.content.framework.security.entity.Permission;
-import com.content.framework.security.entity.Role;
+import com.content.entity.Permission;
+import com.content.entity.Role;
 import com.content.framework.security.mapper.PermissionMapper;
 import com.content.framework.security.mapper.RoleMapper;
 import com.content.framework.security.mapper.UserRoleMapper;

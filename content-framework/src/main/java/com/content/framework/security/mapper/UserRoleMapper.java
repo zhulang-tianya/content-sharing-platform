@@ -1,7 +1,7 @@
 package com.content.framework.security.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.content.framework.security.entity.UserRole;
+import com.content.entity.UserRole;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

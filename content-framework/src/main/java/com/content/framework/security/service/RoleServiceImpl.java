@@ -1,8 +1,8 @@
 package com.content.framework.security.service;
 
 import com.content.common.result.Result;
-import com.content.framework.security.entity.Permission;
-import com.content.framework.security.entity.Role;
+import com.content.entity.Permission;
+import com.content.entity.Role;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

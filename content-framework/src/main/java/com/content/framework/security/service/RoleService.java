@@ -1,8 +1,8 @@
 package com.content.framework.security.service;
 
 import com.content.common.result.Result;
-import com.content.framework.security.entity.Role;
-import com.content.framework.security.entity.UserRole;
+import com.content.entity.Role;
+import com.content.entity.UserRole;
 
 import java.util.List;
 
