@@ -31,6 +31,8 @@ public class User implements Serializable {
 
     private String avatar;
 
+    private Integer gender;
+
     private Long deptId;
 
     private Integer type;
