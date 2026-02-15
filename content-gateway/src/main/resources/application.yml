@@ -1,0 +1,89 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: content-gateway
+  profiles:
+    active: @spring.profiles.active@
+  main:
+    web-application-type: reactive
+  config:
+    import: optional:nacos:@common.dataId@
+  cloud:
+    nacos:
+      discovery:
+        server-addr: @nacos.server-addr@
+        namespace: @nacos.namespace@
+      config:
+        server-addr: @nacos.server-addr@
+        namespace: @nacos.namespace@
+        file-extension: yml
+        import-check:
+          enabled: false
+        shared-configs:
+          - dataId: @common.dataId@
+            group: DEFAULT_GROUP
+            refresh: true
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods: "*"
+            allowedHeaders: "*"
+            allowCredentials: true
+            maxAge: 3600
+      routes:
+        - id: content-user-service
+          uri: lb://content-user-service
+          predicates:
+            - Path=/api/user/**
+          filters:
+            - StripPrefix=2
+        - id: content-content-service
+          uri: lb://content-content-service
+          predicates:
+            - Path=/api/content/**
+          filters:
+            - StripPrefix=2
+        - id: content-comment-service
+          uri: lb://content-comment-service
+          predicates:
+            - Path=/api/comment/**
+          filters:
+            - StripPrefix=2
+        - id: content-recommend-service
+          uri: lb://content-recommend-service
+          predicates:
+            - Path=/api/recommend/**
+          filters:
+            - StripPrefix=2
+        - id: content-pay-service
+          uri: lb://content-pay-service
+          predicates:
+            - Path=/api/pay/**
+          filters:
+            - StripPrefix=2
+        - id: content-message-service
+          uri: lb://content-message-service
+          predicates:
+            - Path=/api/message/**
+          filters:
+            - StripPrefix=2
+        - id: content-search-service
+          uri: lb://content-search-service
+          predicates:
+            - Path=/api/search/**
+          filters:
+            - StripPrefix=2
+        - id: content-stat-service
+          uri: lb://content-stat-service
+          predicates:
+            - Path=/api/stat/**
+          filters:
+            - StripPrefix=2

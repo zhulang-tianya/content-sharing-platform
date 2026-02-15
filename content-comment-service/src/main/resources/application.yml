@@ -1,0 +1,50 @@
+server:
+  port: 8083
+
+spring:
+  application:
+    name: content-comment-service
+  profiles:
+    active: @spring.profiles.active@
+  config:
+    import: optional:nacos:@common.dataId@
+  cloud:
+    nacos:
+      discovery:
+        server-addr: @nacos.server-addr@
+        namespace: @nacos.namespace@
+      config:
+        server-addr: @nacos.server-addr@
+        namespace: @nacos.namespace@
+        file-extension: yml
+        import-check:
+          enabled: false
+        shared-configs:
+          - dataId: @common.dataId@
+            group: DEFAULT_GROUP
+            refresh: true
+    dubbo:
+      scan:
+        base-packages: com.content.comment.service
+      protocol:
+        name: dubbo
+        port: 20883
+      registry:
+        address: nacos://@nacos.server-addr@
+
+mybatis-plus:
+  type-aliases-package: com.content.comment.entity
+
+knife4j:
+  enable: true
+  openapi:
+    title: 内容分享平台评论服务
+    description: 内容分享平台评论服务接口文档
+    version: 1.0.0
+    contact:
+      name: 内容分享平台
+      url: http://localhost:8083
+      email: admin@content.com
+    license:
+      name: Apache 2.0
+      url: https://www.apache.org/licenses/LICENSE-2.0
